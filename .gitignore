@@ -1,5 +1,4 @@
 build
 .env
-src/config/database.ts
 node_modules
 
