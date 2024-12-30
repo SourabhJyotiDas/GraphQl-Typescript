@@ -5,6 +5,6 @@ export const connectToDatabase = async () => {
     await mongoose.connect("mongodb://localhost:27017/TsGRaphQl");
     console.log("Database Connected Successfully");
   } catch (error) {
-    console.log("database connection failed");
+    console.log("database connection failed !");
   }
 };
