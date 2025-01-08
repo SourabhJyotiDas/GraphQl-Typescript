@@ -2,10 +2,9 @@ import express from "express";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { connectToDatabase } from "./config/database";
-import { getAllUsers } from "./controllers/user";
-import { userSchema } from "./graphql/user";
-import { productSchema } from "./graphql/product";
-import { getAllProducts, getProductById } from "./controllers/product";
+import { getAllUsers, getUserById } from "./controllers/user";
+import { schema } from "./graphql/schema";
+import { getAllPosts, getPostById } from "./controllers/post";
 
 const app = express();
 const port = 5000;
@@ -16,13 +15,18 @@ app.use(express.json());
 
 // createing GRaphQl Server
 const server = new ApolloServer({
-  typeDefs: [userSchema, productSchema],
+  typeDefs: schema,
   resolvers: {
     Query: {
       users: getAllUsers,
-      products: getAllProducts,
-      product:getProductById
+      posts: getAllPosts,
+      post: getPostById,
     },
+    // Post: {
+    //   owner: async (parent) => {
+    //     return await getUserById(parent.owner._id);
+    //   },
+    // },
   },
 });
 
