@@ -8,9 +8,10 @@ const PORT = process.env.PORT || 4000;
 const startServer = async () => {
   const app = express();
 
-  app.use(bodyParser.json());
+  app.use(express.json());
 
   connectToDatabase()
+  
   const server = connectGraphQl();
   await server.start();
 
